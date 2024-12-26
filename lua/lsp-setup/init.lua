@@ -29,6 +29,10 @@ local function lsp_servers(opts)
             if ok2 then
                 config = coq.lsp_ensure_capabilities(config)
             end
+            local ok3, blink = pcall(require, 'blink.cmp')
+            if ok3 then
+                config = blink.get_lsp_capabilities(config.capabilities)
+            end
             -- if opts.inlay_hints.enabled == true then
             --     config.capabilities.textDocument = {
             --         inlayHint = {
