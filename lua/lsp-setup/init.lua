@@ -33,17 +33,16 @@ local function lsp_servers(opts)
             if ok3 then
                 config = blink.get_lsp_capabilities(config.capabilities)
             end
-
-            if opts.inlay_hints.enabled == true then
-                config.capabilities.textDocument = {
-                    inlayHint = {
-                        dynamicRegistration = false,
-                        resolveSupport = {
-                            properties = {},
-                        },
-                    },
-                }
-            end
+            -- if opts.inlay_hints.enabled == true then
+            --     config.capabilities.textDocument = {
+            --         inlayHint = {
+            --             dynamicRegistration = false,
+            --             resolveSupport = {
+            --                 properties = {},
+            --             },
+            --         },
+            --     }
+            -- end
         end
 
         servers[server_name] = config
