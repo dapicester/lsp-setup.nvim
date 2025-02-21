@@ -70,6 +70,7 @@ local M = {}
 
 --- @class Options
 M.defaults = {
+    automatic_server_setup = false,
     default_mappings = true,
     --- @type table<string, string|function>
     mappings = {},
@@ -121,7 +122,11 @@ function M.setup(opts)
             function(server_name)
                 local config = servers[server_name] or nil
                 if config == nil then
-                    return
+                    if opts.automatic_server_setup then
+                        config = {}
+                    else
+                        return
+                    end
                 end
                 require('lspconfig')[server_name].setup(config)
             end
